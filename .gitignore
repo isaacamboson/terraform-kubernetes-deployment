@@ -1,0 +1,9 @@
+terraform.tfvars
+terraform.tfstate.backup
+terraform.tfstate
+.terraform
+.terraform.lock.hcl
+scripts/k8s-master-node-bootstrap-old.tpl
+scripts/k8s-master-node-bootstrap-old-2.tpl
+scripts/k8s-worker-node-bootstrap-old-2.tpl
+scripts/k8s-worker-node-bootstrap-old.tpl
