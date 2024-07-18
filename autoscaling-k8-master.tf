@@ -36,10 +36,6 @@ resource "aws_autoscaling_group" "k8s_master_asg" {
     strategy = "Rolling"
   }
 
-  # lifecycle {
-  #   create_before_destroy = true
-  # }
-
   tag {
     key                 = "Name"
     value               = "${local.ApplicationPrefix}_master_${var.environment}"

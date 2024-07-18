@@ -16,8 +16,7 @@ resource "aws_lb_listener" "clixx-app" {
   port              = 443
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-TLS13-1-2-2021-06"
-  certificate_arn   = "arn:aws:acm:us-east-1:767398027423:certificate/fc736fd3-2c80-49fd-82e7-f32d4a8128b8"
-  # certificate_arn   = aws_acm_certificate.alb_certificate.arn
+  certificate_arn   = local.db_creds.cert_arn
 
   default_action {
     type             = "forward"
