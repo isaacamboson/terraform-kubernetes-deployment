@@ -17,7 +17,7 @@ pipeline {
 
          stage('terraform init'){
              steps {
-                slackSend (color: '#FFFF00', message: "STARTED Init: Job by ${RUNNER} - '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+                // slackSend (color: '#FFFF00', message: "STARTED Init: Job by ${RUNNER} - '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
                 sh "terraform init"
              }
          }
@@ -25,7 +25,7 @@ pipeline {
          stage('terraform plan'){
             steps {
                 // sh "terraform plan --auto-approve"
-                slackSend (color: '#FFFF00', message: "STARTED Plan: Job by ${RUNNER} - '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+                // slackSend (color: '#FFFF00', message: "STARTED Plan: Job by ${RUNNER} - '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
                 sh "terraform plan -out=tfplan -input=false -lock=false"
             }
         }
@@ -40,12 +40,11 @@ pipeline {
 
         stage('Terraform Final Action'){
             steps {
-                slackSend (color: '#FFFF00', message: "STARTED Apply: Job by ${RUNNER} - '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+                // slackSend (color: '#FFFF00', message: "STARTED Apply: Job by ${RUNNER} - '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
                 script{stage("Performing Terraform ${ACTION}")}
                 sh "terraform ${ACTION} --auto-approve -input=false -lock=false"
             }
-        }
-        
+        }        
     }
 }
 
