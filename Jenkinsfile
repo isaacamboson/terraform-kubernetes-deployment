@@ -2,8 +2,8 @@ pipeline {
     agent any
     environment {
         PATH = "${PATH}:${getTerraformPath()}"
-        ACTION = "destroy"
-        RUNNER = "apply"
+        ACTION = "apply"
+        RUNNER = "Isaac"
     }
 
     stages{
