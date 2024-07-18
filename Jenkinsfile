@@ -3,7 +3,7 @@ pipeline {
     environment {
         PATH = "${PATH}:${getTerraformPath()}"
         ACTION = "destroy"
-        RUNNER = "Isaac"
+        RUNNER = "apply"
     }
 
     stages{
