@@ -1,0 +1,1 @@
+Jenkins server already has a resource role that can perform tasks in both automation account. Jenkins server in automation account is also granted permmission to assume engineer role in the development account.
