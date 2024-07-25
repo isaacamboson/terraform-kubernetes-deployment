@@ -13,7 +13,6 @@ resource "aws_db_instance" "clixx_app_db_instance" {
   engine            = "mysql"
   engine_version    = "8.0.28"
   identifier        = "wordpressdbclixxjenkins"
-  #   snapshot_identifier = "wordpressdbclixx-snapshot"
   snapshot_identifier    = "arn:aws:rds:us-east-1:767398027423:snapshot:wordpressdbclixxjenkins-snapshot"
   vpc_security_group_ids = [aws_security_group.rds-sg.id]
   parameter_group_name   = "default.mysql8.0"
