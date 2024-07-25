@@ -53,8 +53,8 @@ resource "aws_security_group" "k8s_sg" {
     protocol    = "tcp"
     from_port   = 6783
     to_port     = 6783
-    # cidr_blocks     = ["172.31.0.0/16"]
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks     = ["172.31.0.0/16"]
+    # cidr_blocks = ["0.0.0.0/0"]
     # security_groups = [aws_security_group.lb-sg.id, aws_security_group.bastion-sg.id]
   }
 
