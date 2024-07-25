@@ -54,7 +54,6 @@ resource "aws_security_group" "k8s_sg" {
     from_port   = 6783
     to_port     = 6783
     cidr_blocks = ["10.1.0.0/16"]     #vpc cidr - to allow connection between nodes
-    # cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
