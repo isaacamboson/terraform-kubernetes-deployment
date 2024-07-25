@@ -31,3 +31,5 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 
 #retrieving the load balancer address from terraform output file
 load_balancer_dns=${LB_DNS}
+
+

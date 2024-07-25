@@ -6,14 +6,13 @@ resource "aws_db_subnet_group" "db_subnet_group_name" {
 
 # intitiating database instance for clixx application
 resource "aws_db_instance" "clixx_app_db_instance" {
-  count             = var.stack_controls["rds_create_clixx"] == "Y" ? 1 : 0
-  instance_class    = "db.m6gd.large"
-  allocated_storage = 20
-  iops              = 3000
-  engine            = "mysql"
-  engine_version    = "8.0.28"
-  identifier        = "wordpressdbclixxjenkins"
-  #   snapshot_identifier = "wordpressdbclixx-snapshot"
+  count                  = var.stack_controls["rds_create_clixx"] == "Y" ? 1 : 0
+  instance_class         = "db.m6gd.large"
+  allocated_storage      = 20
+  iops                   = 3000
+  engine                 = "mysql"
+  engine_version         = "8.0.28"
+  identifier             = "wordpressdbclixxjenkins"
   snapshot_identifier    = "arn:aws:rds:us-east-1:767398027423:snapshot:wordpressdbclixxjenkins-snapshot"
   vpc_security_group_ids = [aws_security_group.rds-sg.id]
   parameter_group_name   = "default.mysql8.0"
@@ -33,7 +32,7 @@ resource "aws_db_instance" "clixx_app_db_instance" {
 #----------------------------------------------------------------------
 resource "aws_security_group" "rds-sg" {
   vpc_id      = aws_vpc.vpc_main.id
-  name        = "rds-sg"
+  name        = "${local.ApplicationPrefix}_rds-sg"
   description = "Security Group for rds instance in private subnet"
 
   ingress {

@@ -141,7 +141,3 @@ EOF
 # UPDATE wp_options SET option_value = "$load_balancer_dns" WHERE option_id = '1';
 # UPDATE wp_options SET option_value = "$load_balancer_dns" WHERE option_id = '2';
 # EOF
-
-
-
-
