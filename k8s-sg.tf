@@ -4,36 +4,15 @@ resource "aws_security_group" "k8s_sg" {
   description = "allow inbound access from the LB only for EC2 in cluster"
   vpc_id      = aws_vpc.vpc_main.id
 
-  ingress {
-    description     = "Allow ingress traffic from ALB on HTTP port 80"
-    protocol        = "tcp"
-    from_port       = 80
-    to_port         = 80
-    security_groups = [aws_security_group.lb-sg.id, aws_security_group.bastion-sg.id]
-  }
-
-  ingress {
-    description     = "Allow ingress traffic from ALB on HTTPS port 443"
-    protocol        = "tcp"
-    from_port       = 443
-    to_port         = 443
-    security_groups = [aws_security_group.lb-sg.id, aws_security_group.bastion-sg.id]
-  }
-
-  ingress {
-    description     = "Allow ingress traffic from ALB on port 8080"
-    protocol        = "tcp"
-    from_port       = 8080
-    to_port         = 8080
-    security_groups = [aws_security_group.lb-sg.id, aws_security_group.bastion-sg.id]
-  }
-
-  ingress {
-    description     = "Allow SSH ingress traffic from bastion host"
-    protocol        = "tcp"
-    from_port       = 22
-    to_port         = 22
-    security_groups = [aws_security_group.lb-sg.id, aws_security_group.bastion-sg.id]
+  #dynamic block for allowing ingress traffic for allowing ports 80, 443, 8080, 22
+  dynamic "ingress" {
+    for_each = local.inbound_ports
+    content {
+      from_port       = ingress.value
+      to_port         = ingress.value
+      protocol        = "tcp"
+      security_groups = [aws_security_group.lb-sg.id, aws_security_group.bastion-sg.id]
+    }
   }
 
   ingress {

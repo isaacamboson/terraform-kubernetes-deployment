@@ -68,6 +68,7 @@ resource "aws_launch_template" "clixx-k8s-worker-LT" {
   dynamic "block_device_mappings" {
     for_each = var.device_names
     content {
+      # device_name = each.value
       device_name = block_device_mappings.value
 
       ebs {
