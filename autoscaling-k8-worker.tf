@@ -8,7 +8,7 @@ resource "aws_autoscaling_group" "k8s_worker_asg" {
   max_size                  = 8
   min_size                  = 4
   health_check_grace_period = 300
-  vpc_zone_identifier       = [aws_subnet.private_subnets[0].id] #, aws_subnet.private_subnets[1].id]
+  vpc_zone_identifier       = [aws_subnet.private_subnets[0].id, aws_subnet.private_subnets[1].id]
   health_check_type         = "EC2"
   target_group_arns         = [aws_lb_target_group.clixx-app-tg.arn]
   default_cooldown          = 300
